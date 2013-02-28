@@ -15,16 +15,32 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.1.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
+
+
+      <div id="main">
+
         <!-- Add your site or application content here -->
         <p>Hello world! This is HTML5 Boilerplate.</p>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <div style="display:none" class="error">
+          Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+        </div>
+
+        <div style="display:none" class="success">
+          <p>We've just retrieved our first object</p>
+          
+        </div>
+      </div>
+
+
+        <script src="http//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
@@ -36,5 +52,34 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+
+
+
+
+  <script type="text/javascript">
+    Parse.initialize("EE1v8eLeCMeQmXAQKjcg2fvjLR2OoO8AzYY3KQfx", "o9B99wDktfYCBWAFQVwhpVBhCswLKQ14vE2rBDuO");
+    
+
+    var Venue = Parse.Object.extend("Venue");
+    var Brand = Parse.Object.extend("Brand");
+    var query = new Parse.Query(Venue);
+    query.get("4F9GAlIWRL", {
+      success: function(welcomeStranger) {
+        console.log(welcomeStranger);
+
+        var relation = welcomeStranger.relation("brands");
+        var saved_brand = new Brand();
+        saved_brand.id = "R0nGLI1Sz7"; 
+        relation.add(saved_brand);
+
+        // The object was retrieved successfully.
+        $(".success").show();
+      },
+      error: function(object, error) {
+        $(".error").show();
+      }
+    });
+
+  </script>
     </body>
 </html>
