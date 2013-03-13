@@ -40,11 +40,27 @@
 
     <!-- templates -->
     <script type="text/template"  id="brand-template">
-        <li>
-            <div><%= name %></div>
-            <button>Welcome Stranger</button>
-            <button>Union Made</button>
-        </li>
+        <form id="pick-brand">
+            <label>Brands:</label>
+            <select id="brand-dropdown">
+                <% for (var i in brands) { %>
+                    <li>
+                        <option value="<%= brands[i].id %>"><%= brands[i].get('name') %></option>
+                    </li>
+                <% } %>
+            </select>
+            <button type="submit">Go</button>
+        </form>
+    </script>
+
+    <script type="text/template"  id="venue-template">
+        <form id="save-venue">
+            <input value="<%= brand %>" name="<%= brand %>" type="hidden">
+            <% for (var i in venues) { %>
+                <input name="<%= venues[i].get('name') %>" value="<%= venues[i].id %>" type="checkbox"><%= venues[i].get('name') %>
+            <% } %>
+            <button type="submit">save</button>
+        </form>
     </script>
 
 
@@ -65,28 +81,39 @@
     var Brand = Parse.Object.extend("Brand");
 
 
-    console.log(_.template($('#brand-template').html(),{name:"Life After Denim"}));
 
-    /*
-    var query = new Parse.Query(Venue);
-    query.get("4F9GAlIWRL", {
-      success: function(welcomeStranger) {
-        console.log(welcomeStranger);
+    var brand_query = new Parse.Query(Brand);
+    brand_query.find({
+      success: function(brands) {
+        var brand_template_compiled = _.template($('#brand-template').html(),{brands:brands});
+        $(".content").html(brand_template_compiled);
+        $("#pick-brand").submit(function(){
 
-        var relation = welcomeStranger.relation("brands");
-        var saved_brand = new Brand();
-        saved_brand.id = "R0nGLI1Sz7"; 
-        relation.add(saved_brand);
-        welcomeStranger.save()
+            var brand_id = $('#brand-dropdown').find(":selected").val();
 
-        // The object was retrieved successfully.
-        $(".success").show();
+            var venue_query = new Parse.Query(Venue);
+
+            venue_query.find({
+              success: function(venues) {
+
+                var venue_template_compiled = _.template($('#venue-template').html(),{venues:venues,brand:brand_id});
+
+                $("#save-venue").remove();
+                $(".content").append(venue_template_compiled);
+
+              },
+              error: function(object, error) {
+                console.log("something weird happened");
+              }
+            });
+            return false;
+        });
+
       },
       error: function(object, error) {
-        $(".error").show();
+        console.log("something weird happened");
       }
     });
-    */
 
   </script>
     </body>
