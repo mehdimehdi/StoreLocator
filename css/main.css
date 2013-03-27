@@ -107,7 +107,32 @@ input[type="text"] {
 }
 
 
+#header{
+    background-color: #2d2d2d;
+    height: 27px;
+}
 
+#nav{
+    background-color: White;
+    height: 78px;
+}
+
+#map-canvas{
+    background-color: Purple;
+    position:absolute; 
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+}
+#parent{
+    margin-top:105px;
+    position:absolute; 
+    top:0px; 
+    left:0px;
+    right:0px; 
+    bottom:0px;
+}
 
 
 

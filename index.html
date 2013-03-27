@@ -23,7 +23,6 @@
         <style type="text/css">
               html { height: 100% }
               body { height: 100%; margin: 0; padding: 0 }
-              #map-canvas { height: 100% }
         </style>
 
 
@@ -34,13 +33,13 @@
         <![endif]-->
 
 
-        <header>StoreLocatr</header> 
-        <div id="main">
+        <div id="header"></div>
+        <div id="nav">
             <input type="text" autocomplete="off" class="typeahead">
-
         </div>
-
-        <div id="map-canvas"></div>
+        <div id="parent">
+		<div id="map-canvas"></div>
+         </div>
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
