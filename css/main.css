@@ -93,9 +93,11 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+input[type="text"] {
 
+	background-color: #f11313; 
 
-
+}
 
 
 
