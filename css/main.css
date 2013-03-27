@@ -99,6 +99,14 @@ input[type="text"] {
 
 }
 
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+
+	background-color: #169233; 
+	background-image: none;
+
+}
+
+
 
 
 
