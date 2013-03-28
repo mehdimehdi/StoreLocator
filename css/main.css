@@ -9,6 +9,9 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+input {
+    outline: none;
+}
 
 html,
 button,
@@ -94,9 +97,23 @@ textarea {
    ========================================================================== */
 
 input[type="text"] {
+	outline: none;
+	background-color: #ff; 
+	border: 0px;
+	box-shadow: inset 0 0px 0px;
+	height: 78px;
+	width: 900px;
+	font-family: helvetica, verdana, sans-serif;
+    font-size: 33px;
+    margin-left: 64px;
+	
+}
 
-	background-color: #f11313; 
 
+elementSelector:focus {
+    outline-width: 0px; /* thin, medium, thick or standard CSS length units */
+    outline-style: auto; /* or 'inherit', 'none' or border-style (solid, dashed, dotted...) */
+    outline-color: #f90; /* standard CSS colors */
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
@@ -113,12 +130,13 @@ input[type="text"] {
 }
 
 #nav{
+	background-image:url('../img/search_icon.gif');
+	background-repeat:no-repeat;
     background-color: White;
     height: 78px;
 }
 
 #map-canvas{
-    background-color: Purple;
     position:absolute; 
     left:0px;
     top:0px;
