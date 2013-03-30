@@ -1887,7 +1887,7 @@
       this.$menu
         .insertAfter(this.$element)
         .css({
-          top: pos.top + pos.height
+          top: pos.top + pos.height - 13
         , left: pos.left
         })
         .show()
