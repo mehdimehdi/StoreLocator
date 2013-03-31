@@ -106,26 +106,50 @@ input[type="text"] {
 	box-shadow: inset 0 0px 0px;
 	height: 78px;
 	width: 900px;
-	font-family: helvetica, verdana, sans-serif;
+	font-family: 'Helvetica Light', helvetica, verdana, sans-serif;
+	font-weight: 100;
     font-size: 33px;
     margin-left: 64px;
 	padding: 0px 0px 11px 0px;
 	color: #b8b8b8;
 }
 
+.dropdown-menu > li > a {
 
-/*elementSelector:focus {
-    outline-width: 0px; 
-    outline-style: auto; 
-    outline-color: #f90; 
-}*/
-
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
-
-	background-color: #169233; 
-	background-image: none;
+	font-family: 'Helvetica Light', helvetica, verdana, sans-serif;
+	font-weight: 100;
+    font-size: 33px;
+    color: #d9d9d9;
 
 }
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a,
+.dropdown-menu > li > a:hover > strong,
+.dropdown-menu > li > a:focus > strong,
+.dropdown-submenu:hover > a > strong,
+.dropdown-submenu:focus > a > strong  {
+  
+  color: #0081c2;
+  text-decoration: none;
+
+
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a > strong,
+.dropdown-menu > .active > a:hover > strong,
+.dropdown-menu > .active > a:focus > strong {
+  color: #0081c2;
+  text-decoration: none;
+
+}
+
+
 
 
 #header{
