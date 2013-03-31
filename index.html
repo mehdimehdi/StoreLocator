@@ -25,7 +25,8 @@
         <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.1.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBB_WrC5D4Cg4sl4zVSEDqMh3rY2-UEXDU&sensor=false"></script>
 
-
+        
+  
 
 
     </head>
@@ -38,6 +39,13 @@
         <div id="header"></div>
         <div id="nav">
         	<input type="text" autocomplete="off" class="typeahead" autofocus>
+        	<div id="icon">
+        		<a href="#" rel="tooltip" title="URL"><img src="img/icon_link.gif"></a>
+        		<a href="#" rel="tooltip" title="Facebook"><img src="img/icon_fb.gif"></a>
+        		<a href="#" rel="tooltip" title="Twitter"><img src="img/icon_twitter.gif"></a>
+        		<a href="#" rel="tooltip" title="Tumblr"><img src="img/icon_tumblr.gif"></a>
+        		<a href="#" rel="tooltip" title="Instagram"><img src="img/icon_inst.gif"></a>
+        	</div>
         </div>
         <div id="parent">
 		<div id="map-canvas"></div>
@@ -58,11 +66,21 @@
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
 
+        <script type="text/javascript">
+              $(document).ready(function () {
+                $("a").tooltip({
+                  'selector': '',
+                  'placement': 'bottom'
+                });
+              });
+            </script>
+
 
         <script>
 		
 	
             $(document).ready(function(){
+                        
                 $('.typeahead').typeahead({source:["A.P.C.","Alternative Apparel","Barbour","Burkman Brothers","Commes des Garcons","Creep","Duluth Pack","Eastland","Ebbetts","Etudes","Filson","Fjallraven","Gant","General Assembly","Giles & Brother","Gingko Press","Goorin Bros.","Happy Socks","Jungmaven","Juniper Ridge","Kent Combs","Levi's Made & Crafted ","Life After Denim","Malin + Goetz","Maxx & Unicorn","Miansai","Nanamica","Norse Projects","Otter Wax","Paul Rose","Patch NYC","Pendleton","Pendleton Portland Collection","Penny Skateboards","Poler Camping Stuff","Rag & Bone","Rainbow","Reyn Spooner","Rite in the Rain","Saturdays NYC","Schott NYC","Sebago","Shades of Grey","Shwood","Smathers & Branson","Soap & Paper Factory","Stanley","Tanner Goods","Topman","Uniform Wares","Ursa Major","Vanishing Elephant","Vans", "Velour"]});
 
           function initialize() {

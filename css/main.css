@@ -99,6 +99,16 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+
+
+#icon   {
+    position: relative;
+    margin-top: 22px;
+    margin-right: 20px;
+    float: right;
+
+}
+
 input[type="text"] {
 	outline: none;
 	background-color: #ff; 
@@ -132,7 +142,7 @@ input[type="text"] {
 .dropdown-submenu:hover > a > strong,
 .dropdown-submenu:focus > a > strong  {
   
-  color: #0081c2;
+  color: #e23311;
   text-decoration: none;
 
 
@@ -144,7 +154,7 @@ input[type="text"] {
 .dropdown-menu > .active > a > strong,
 .dropdown-menu > .active > a:hover > strong,
 .dropdown-menu > .active > a:focus > strong {
-  color: #0081c2;
+  color: #e23311;
   text-decoration: none;
 
 }
