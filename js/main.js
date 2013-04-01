@@ -10,14 +10,7 @@ $(function() {
     // Models
     //-------
     var Venue = Parse.Object.extend("Venue");
-    var Brand = Parse.Object.extend("Brand", {
-
-        initialize: function() {
-            console.log('init brand');
-        }
-
-
-    });
+    var Brand = Parse.Object.extend("Brand");
 
 
     // Brand Collection
@@ -77,6 +70,9 @@ $(function() {
         },
         initialize: function() {
 
+
+            var self = this;
+
             _.bindAll(this, 'render', 'selectBrand');
 
             //create our collection of brands
@@ -85,30 +81,14 @@ $(function() {
             //fetch the list
             this.brands.fetch();
 
-
-            /*
-            console.log(this.brands.length);
-
-            this.brands.fetch({
-                success: function(collection) {
-                    collection.each(function(object) {
-                        console.warn(object.get('name'));
-                    });
-                },
-                error: function(collection, error) {
-                    // The collection could not be retrieved.
-                }
-            });
-            */
-
-
-            //this.render();
+            //bind the reset to show what's inside
+            this.brands.on("reset",this.render,this);
 
         },
         render: function() {
 
             console.log('allo quoi');
-            //console.log(this.brands);
+            console.log(this.brands.length);
             //this.$el.html(_.template($('#some-template').html()));
             //this.$el.html(this.template(b.toJSON()));
             return this;
