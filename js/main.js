@@ -63,17 +63,20 @@ $(function() {
 
     //the admin view
     var AdminView = Parse.View.extend({
+
+        //the anchor
         el: ".content",
-        //template: _.template($('#brand-template').html()),
+
+        //the template for the brand
+        template: _.template($('#brand-template').html()),
         events: {
             "submit": "selectBrand"
         },
+
+        //initialize the whole view
         initialize: function() {
 
-
             var self = this;
-
-            _.bindAll(this, 'render', 'selectBrand');
 
             //create our collection of brands
             this.brands = new BrandList;
@@ -85,14 +88,15 @@ $(function() {
             this.brands.on("reset",this.render,this);
 
         },
+
+        //render the list of brands
         render: function() {
 
-            console.log('allo quoi');
-            console.log(this.brands.length);
-            //this.$el.html(_.template($('#some-template').html()));
-            //this.$el.html(this.template(b.toJSON()));
+            this.$el.html(this.template({brands:this.brands.models}));
             return this;
+
         },
+
         selectBrand: function() {
         }
 
