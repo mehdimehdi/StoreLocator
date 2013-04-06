@@ -13,11 +13,15 @@ $(function() {
     var Brand = Parse.Object.extend("Brand");
 
 
-    // Brand Collection
+    // Collections
     //-----------------
 
     var BrandList = Parse.Collection.extend({
         model:Brand
+    });
+
+    var VenueList = Parse.Collection.extend({
+        model:Venue
     });
 
 
@@ -62,6 +66,52 @@ $(function() {
 
 
     //the admin view
+    var VenueView = Parse.View.extend({
+
+        //the anchor
+        el: ".venue",
+
+        //the template for the brand
+        template: _.template($('#venue-template').html()),
+        events: {
+            "submit #save-venue": "saveVenue"
+        },
+
+        //initialize the whole view
+        initialize: function() {
+
+            var self = this;
+
+            //create our collection of venues
+            this.venues = new VenueList;
+            
+            //fetch the list
+            this.venues.fetch();
+
+            //bind the reset to show what's inside
+            this.venues.on("reset",this.render,this);
+
+        },
+
+        //render the list of brands
+        render: function() {
+
+            this.$el.html(this.template({venues:this.venues.models}));
+            return this;
+
+        },
+
+        saveVenue: function(event) {
+            var venue_id = $(event.target).find("input[name=venue-checkboxes]:checked").val();
+            return false;
+        }
+
+    });
+
+
+
+
+    //the admin view
     var AdminView = Parse.View.extend({
 
         //the anchor
@@ -70,7 +120,7 @@ $(function() {
         //the template for the brand
         template: _.template($('#brand-template').html()),
         events: {
-            "submit": "selectBrand"
+            "submit #pick-brand": "selectBrand"
         },
 
         //initialize the whole view
@@ -97,7 +147,11 @@ $(function() {
 
         },
 
-        selectBrand: function() {
+        selectBrand: function(event) {
+            var brand_id = $(event.target).find(":selected").val();
+            console.log(brand_id);
+            new VenueView();
+            return false;
         }
 
     });

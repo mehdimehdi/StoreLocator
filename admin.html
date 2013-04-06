@@ -34,6 +34,9 @@
 
         <div class="content">
         </div>
+
+        <div class="venue">
+        </div>
     </div>
 
 
@@ -55,7 +58,6 @@
 
     <script type="text/template"  id="venue-template">
         <form id="save-venue">
-            <input value="<%= brand %>" name="<%= brand %>" type="hidden">
             <% for (var i in venues) { %>
                 <input name="venue-checkboxes" value="<%= venues[i].id %>" type="checkbox"><%= venues[i].get('name') %>
             <% } %>
