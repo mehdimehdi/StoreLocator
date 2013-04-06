@@ -102,7 +102,19 @@ $(function() {
         },
 
         saveVenue: function(event) {
+
+            //get the id of the venue
             var venue_id = $(event.target).find("input[name=venue-checkboxes]:checked").val();
+
+            //get the venue
+            var venue = this.venues.get(venue_id)
+
+            //Save brand into venue
+            var relation = venue.relation('brands');
+            relation.add(this.options.brand);
+            venue.save()
+            alert('done!');
+
             return false;
         }
 
@@ -148,9 +160,13 @@ $(function() {
         },
 
         selectBrand: function(event) {
+
+            //get the id of the brand selected
             var brand_id = $(event.target).find(":selected").val();
-            console.log(brand_id);
-            new VenueView();
+
+            //pass it to the view to save
+            new VenueView({brand:this.brands.get(brand_id)});
+
             return false;
         }
 
