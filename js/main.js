@@ -92,15 +92,41 @@ $(function() {
             query.find({
                 success: function(venues) {
 
+                    //for each of the venue who carry the brand
                     for (var i=0; i<venues.length;i++) {
 
+                        //get the longitude and latitude
                         var myLatlng = new google.maps.LatLng(venues[i].get('location')['latitude'],venues[i].get('location')['longitude']);
 
+                        //add the marker to the map
                         var marker = new google.maps.Marker({
                             position: myLatlng,
                             map: self.map,
                             title:"Hello World!"
                         });
+
+                        //Add the listener so we can add the infor window
+                        google.maps.event.addListener(marker, 'click', function() {
+
+                            //create the info window
+                            var infoWindow = new google.maps.InfoWindow({ 
+                                size: new google.maps.Size(150,50)
+                            });
+                            
+                            //add some fake content for now.
+                            infoWindow.setContent("hello"); 
+
+
+                            //open the info window
+                            infoWindow.open(this.map,marker);
+    
+                            //allow to close the info window when clicking on the map
+                            google.maps.event.addListener(this.map, 'click', function() {
+                                infoWindow.close();
+                            });
+
+                        });
+
                     }
                     
                 }
