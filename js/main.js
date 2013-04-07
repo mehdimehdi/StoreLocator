@@ -32,7 +32,17 @@ $(function() {
     var AppView = Parse.View.extend({
         el:$("#app-container"),
         initialize: function() {
-            this.render(); 
+
+            //create our collection of venues
+            this.brands = new BrandList;
+            
+            //fetch the list
+            this.brands.fetch();
+
+            //bind the reset to show what's inside
+            this.brands.on("reset",this.render,this);
+
+
         },
         render: function() {
             this.$el.html(_.template($("#app-template").html()));
@@ -43,18 +53,21 @@ $(function() {
                 'placement': 'bottom'
             });
 
-            $('.typeahead').typeahead({source:["A.P.C.","Alternative Apparel","Barbour","Burkman Brothers","Commes des Garcons","Creep","Duluth Pack","Eastland","Ebbetts","Etudes","Filson","Fjallraven","Gant","General Assembly","Giles & Brother","Gingko Press","Goorin Bros.","Happy Socks","Jungmaven","Juniper Ridge","Kent Combs","Levi's Made & Crafted ","Life After Denim","Malin + Goetz","Maxx & Unicorn","Miansai","Nanamica","Norse Projects","Otter Wax","Paul Rose","Patch NYC","Pendleton","Pendleton Portland Collection","Penny Skateboards","Poler Camping Stuff","Rag & Bone","Rainbow","Reyn Spooner","Rite in the Rain","Saturdays NYC","Schott NYC","Sebago","Shades of Grey","Shwood","Smathers & Branson","Soap & Paper Factory","Stanley","Tanner Goods","Topman","Uniform Wares","Ursa Major","Vanishing Elephant","Vans", "Velour"]});
+            //["A.P.C.","Alternative Apparel","Barbour","Burkman Brothers","Commes des Garcons","Creep","Duluth Pack","Eastland","Ebbetts","Etudes","Filson","Fjallraven","Gant","General Assembly","Giles & Brother","Gingko Press","Goorin Bros.","Happy Socks","Jungmaven","Juniper Ridge","Kent Combs","Levi's Made & Crafted ","Life After Denim","Malin + Goetz","Maxx & Unicorn","Miansai","Nanamica","Norse Projects","Otter Wax","Paul Rose","Patch NYC","Pendleton","Pendleton Portland Collection","Penny Skateboards","Poler Camping Stuff","Rag & Bone","Rainbow","Reyn Spooner","Rite in the Rain","Saturdays NYC","Schott NYC","Sebago","Shades of Grey","Shwood","Smathers & Branson","Soap & Paper Factory","Stanley","Tanner Goods","Topman","Uniform Wares","Ursa Major","Vanishing Elephant","Vans", "Velour"]
 
-            function initialize() {
-                var mapOptions = {
-                        center: new google.maps.LatLng(37.770, -122.440),
-                        zoom: 13,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
-            }
+            $('.typeahead').typeahead({source:this.brands.pluck('name')});
 
-            google.maps.event.addDomListener(window, 'load', initialize);
+            google.maps.event.addDomListener(window, 'load', this.map());
+
+        },
+        map: function() {
+            var mapOptions = {
+                    center: new google.maps.LatLng(37.770, -122.440),
+                    zoom: 13,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map($("#map-canvas").get(0),mapOptions);
         }
         
     });
