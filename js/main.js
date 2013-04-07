@@ -31,6 +31,11 @@ $(function() {
     //the app view
     var AppView = Parse.View.extend({
         el:$("#app-container"),
+
+        events: {
+            'foundBrand' : 'foundBrand'
+        },
+
         initialize: function() {
 
             //create our collection of venues
@@ -46,6 +51,8 @@ $(function() {
         },
         render: function() {
 
+            var self = this;
+
             //inserting the right template
             this.$el.html(_.template($("#app-template").html()));
 
@@ -60,16 +67,26 @@ $(function() {
             //setting up the typeahead with the brand collection, and the callback for one selected
             $('.typeahead').typeahead({
                                 source: this.brands.pluck('name'),
-                                updater: this.searchBrand
+                                updater: function(brandName) {
+
+                                    //triggering the event when a brand has been chosen
+                                    $(self.el).trigger('foundBrand', brandName);
+                                }
             });
 
             //adding the map when everything is properly loaded
             google.maps.event.addDomListener(window, 'load', this.map());
 
         },
-        searchBrand: function() {
-            alert('searching');
+        foundBrand: function(event,brandName) {
+
+            //based on the name, let's look up the brand object
+            brand = this.brands.find(function(item){
+                return item.get('name') == brandName;
+            })
+            console.log(brand);
         },
+
         map: function() {
 
             //the properties of the map
