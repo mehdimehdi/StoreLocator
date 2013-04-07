@@ -80,11 +80,33 @@ $(function() {
         },
         foundBrand: function(event,brandName) {
 
+            var self = this;
+
             //based on the name, let's look up the brand object
             brand = this.brands.find(function(item){
                 return item.get('name') == brandName;
             })
-            console.log(brand);
+
+            var query = new Parse.Query(Venue);
+            query.equalTo("brands", brand);
+            query.find({
+                success: function(venues) {
+
+                    for (var i=0; i<venues.length;i++) {
+
+                        var myLatlng = new google.maps.LatLng(venues[i].get('location')['latitude'],venues[i].get('location')['longitude']);
+
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: self.map,
+                            title:"Hello World!"
+                        });
+                    }
+                    
+                }
+            });
+            
+
         },
 
         map: function() {
@@ -96,7 +118,7 @@ $(function() {
                     mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var map = new google.maps.Map($("#map-canvas").get(0),mapOptions);
+            this.map = new google.maps.Map($("#map-canvas").get(0),mapOptions);
         }
         
     });
