@@ -43,28 +43,6 @@ $(function() {
     });
 
 
-    //the brand view
-    var brandView = Parse.View.extend({
-        className: "content",
-        template: _.template($('#brand-template').html()),
-        events: {
-            "submit": "selectBrand"
-        },
-        initialize: function() {
-        },
-        render: function() {
-            /*
-            var brand_query = new Parse.Query(Brand);
-            this.$el.html(this.template(this.model.attributes));
-            return this;
-            */
-        },
-        selectBrand: function() {
-        }
-
-    });
-
-
     //the admin view
     var VenueView = Parse.View.extend({
 
