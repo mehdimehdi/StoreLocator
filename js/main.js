@@ -35,11 +35,9 @@ $(function() {
             this.render(); 
         },
         render: function() {
-            //for now we only have the admin view, but it will change soon
-            if (true) {
-                new AdminView();
-            }
+            console.log('app view');
         }
+        
     });
 
 
@@ -150,7 +148,31 @@ $(function() {
 
     });
 
-    var appView = new AppView;
 
+    var AppRouter = Parse.Router.extend({
+        routes: {
+            "admin": "admin", // matches http://example.com/#/admin
+            "*actions": "app" // matches http://example.com/#anything, basically the default app
+
+        },
+
+        initialize: function(options) {
+
+        },
+
+        admin: function() {
+            new AdminView();
+        },
+
+        app: function() {
+            new AppView();
+        },
+
+    });
+
+    // Initiate the router
+    var appRouter = new AppRouter;
+
+    Parse.history.start();
 
 });
