@@ -99,7 +99,35 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+#store-name   {
+    font-family: 'Helvetica Regular', helvetica, verdana, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+}
 
+
+#store-cat   {
+	margin-top: -3px;
+    font-family: 'Helvetica Regular', helvetica, verdana, sans-serif;
+    font-size: 13px;
+    color: #717171;
+    font-style: italic;
+    font-weight: 500;
+}
+
+#store-address, #store-phone   {
+	margin-top: 8px;
+    font-family: 'Helvetica Regular', helvetica, verdana, sans-serif;
+    font-size: 13px;
+    color: #717171;
+    font-weight: 500;
+    line-height: 110%;
+}
+
+#store-icons   {
+	margin-top: 8px;
+}
 
 #icon   {
     position: relative;
