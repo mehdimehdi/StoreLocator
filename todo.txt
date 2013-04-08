@@ -1,0 +1,7 @@
+show icons when selected
+remove the existing marker when doing a new search
+autofocus
+close info window when clicking on other marker
+change the ui of the marker
+being able to save more than one many-to-many
+pan to the focus (re-scale)
