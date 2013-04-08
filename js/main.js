@@ -97,8 +97,11 @@ $(function() {
                     //for each of the venue who carry the brand
                     for (var i=0; i<venues.length;i++) {
 
+
+                        var venue = venues[i];
+
                         //get the longitude and latitude
-                        var myLatlng = new google.maps.LatLng(venues[i].get('location')['latitude'],venues[i].get('location')['longitude']);
+                        var myLatlng = new google.maps.LatLng(venue.get('location')['latitude'],venue.get('location')['longitude']);
 
                         //add the marker to the map
                         var marker = new google.maps.Marker({
@@ -115,8 +118,9 @@ $(function() {
                                 size: new google.maps.Size(150,50)
                             });
                             
-                            //add some fake content for now.
-                            infoWindow.setContent("hello"); 
+    
+                            //add the content for now.
+                            infoWindow.setContent(_.template($('#info-window-template').html(),venue.toJSON())); 
 
 
                             //open the info window
