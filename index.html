@@ -48,16 +48,21 @@
         <div id="nav">
         	<input type="text" autocomplete="off" class="typeahead">
         	<div id="icon">
-        		<a href="#" rel="tooltip" title="URL"><img src="img/icon_link.gif"></a>
-        		<a href="#" rel="tooltip" title="Facebook"><img src="img/icon_fb.gif"></a>
-        		<a href="#" rel="tooltip" title="Twitter"><img src="img/icon_twitter.gif"></a>
-        		<a href="#" rel="tooltip" title="Tumblr"><img src="img/icon_tumblr.gif"></a>
-        		<a href="#" rel="tooltip" title="Instagram"><img src="img/icon_inst.gif"></a>
         	</div>
         </div>
         <div id="parent">
 		<div id="map-canvas"></div>
     </script>
+
+    <script type="text/template"  id="brand-social-template">
+        <a href="<%= website %>" rel="tooltip" title="Website"><img src="img/icon_link.gif" target="_blank"></a>
+        <a href="<%= facebook %>" rel="tooltip" title="Facebook"><img src="img/icon_fb.gif" target="_blank"></a>
+        <a href="<%= twitter %>" rel="tooltip" title="Twitter"><img src="img/icon_twitter.gif" target="_blank"></a>
+        <a href="<%= tumblr %>" rel="tooltip" title="Tumblr"><img src="img/icon_tumblr.gif" target="_blank"></a>
+        <a href="<%= instagram %>" rel="tooltip" title="Instagram"><img src="img/icon_inst.gif" target="_blank"></a>
+    </script>
+
+
 
     <script type="text/template"  id="brand-template">
         <form id="pick-brand">

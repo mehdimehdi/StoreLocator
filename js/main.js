@@ -89,6 +89,8 @@ $(function() {
                 return item.get('name') == brandName;
             })
 
+            $("#icon").html(_.template($('#brand-social-template').html(),brand.toJSON()));
+
             var query = new Parse.Query(Venue);
             query.equalTo("brands", brand);
             query.find({
