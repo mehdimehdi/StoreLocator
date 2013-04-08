@@ -33,7 +33,20 @@ $(function() {
         el:$("#app-container"),
 
         events: {
-            'foundBrand' : 'foundBrand'
+            'foundBrand' : 'foundBrand',
+            'focus #search-bar' : 'startSearch'
+        },
+
+
+        startSearch: function(ev) {
+
+            //clear the social icons
+            $("#icon a").fadeOut()
+
+            console.log('starting search');
+
+            return false;
+
         },
 
         initialize: function() {
