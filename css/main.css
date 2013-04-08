@@ -193,6 +193,15 @@ input[type="text"] {
 #header{
     background-color: #2d2d2d;
     height: 27px;
+    
+    font-family: 'Helvetica Light', helvetica, verdana, sans-serif;
+	font-weight: 500;
+    font-size: 14px;
+    color: #ababab;
+    line-height: 26px;
+    padding-left: 8px;
+
+   
 }
 
 #nav{
