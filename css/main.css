@@ -190,6 +190,10 @@ input[type="text"] {
     bottom:0px;
 }
 
+#map-canvas img {
+    max-width: none;
+}
+
 
 
 
