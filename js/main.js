@@ -107,7 +107,7 @@ $(function() {
                         var marker = new google.maps.Marker({
                             position: myLatlng,
                             map: self.map,
-                            title:"Hello World!"
+                            title:venue.get('name')
                         });
 
                         //Add the listener so we can add the infor window
