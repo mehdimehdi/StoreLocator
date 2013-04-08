@@ -71,6 +71,8 @@ $(function() {
 
                                     //triggering the event when a brand has been chosen
                                     $(self.el).trigger('foundBrand', brandName);
+                                    
+                                    return brandName;
                                 }
             });
 
