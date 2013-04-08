@@ -110,28 +110,9 @@ $(function() {
                             title:venue.get('name')
                         });
 
-                        //Add the listener so we can add the infor window
-                        google.maps.event.addListener(marker, 'click', function() {
 
-                            //create the info window
-                            var infoWindow = new google.maps.InfoWindow({ 
-                                size: new google.maps.Size(150,50)
-                            });
-                            
-    
-                            //add the content for now.
-                            infoWindow.setContent(_.template($('#info-window-template').html(),venue.toJSON())); 
+                        self.attachInfoWindow(marker,venue);
 
-
-                            //open the info window
-                            infoWindow.open(this.map,marker);
-    
-                            //allow to close the info window when clicking on the map
-                            google.maps.event.addListener(this.map, 'click', function() {
-                                infoWindow.close();
-                            });
-
-                        });
 
                     }
                     
@@ -141,6 +122,30 @@ $(function() {
 
         },
 
+        attachInfoWindow: function(marker,venue) {
+
+            //create the info window
+            var infoWindow = new google.maps.InfoWindow({ 
+                size: new google.maps.Size(150,50)
+            });
+                            
+    
+            //add the content for now.
+            infoWindow.setContent(_.template($('#info-window-template').html(),venue.toJSON())); 
+
+
+            //open the info window, on click on the marker
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.open(this.map,marker);
+            });
+    
+            //allow to close the info window when clicking on the map
+            google.maps.event.addListener(this.map, 'click', function() {
+                infoWindow.close();
+            });
+
+
+        },
         map: function() {
 
             //the properties of the map
