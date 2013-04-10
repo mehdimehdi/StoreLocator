@@ -141,7 +141,7 @@ $(function() {
 
             //create the info window
             var infoWindow = new google.maps.InfoWindow({ 
-                size: new google.maps.Size(150,50),
+                size: new google.maps.Size(150,50)
             });
                             
     
