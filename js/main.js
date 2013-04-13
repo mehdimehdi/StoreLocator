@@ -34,6 +34,8 @@ $(function() {
 
         markers:[],
 
+        openedInfoWindows: [],
+
         events: {
             'foundBrand' : 'foundBrand'
         },
@@ -142,6 +144,8 @@ $(function() {
 
         attachInfoWindow: function(marker,venue) {
 
+            var self = this;
+
             //create the info window
             var infoWindow = new google.maps.InfoWindow({ 
                 size: new google.maps.Size(150,50)
@@ -155,7 +159,15 @@ $(function() {
             //open the info window, on click on the marker
             google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.open(this.map,marker);
+
+                for (var i=0; i<self.openedInfoWindows.length;i++) {
+                    self.openedInfoWindows[i].close();
+                }
+
+                self.openedInfoWindows.push(infoWindow);
+
             });
+
     
             //allow to close the info window when clicking on the map
             google.maps.event.addListener(this.map, 'click', function() {
