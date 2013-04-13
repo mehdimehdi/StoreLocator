@@ -92,6 +92,8 @@ $(function() {
             //adding the map when everything is properly loaded
             google.maps.event.addDomListener(window, 'load', this.map());
 
+            $(".typeahead").focus();
+
         },
         foundBrand: function(event,brandName) {
 
