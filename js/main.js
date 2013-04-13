@@ -32,6 +32,8 @@ $(function() {
     var AppView = Parse.View.extend({
         el:$("#app-container"),
 
+        markers:[],
+
         events: {
             'foundBrand' : 'foundBrand'
         },
@@ -73,6 +75,12 @@ $(function() {
                                     //triggering the event when a brand has been chosen
                                     $(self.el).trigger('foundBrand', brandName);
                                     
+                                    //removing the existing markers:
+                                    for (var i=0; i<self.markers.length;i++) {
+                                        self.markers[i].setMap(null);
+                                    }
+                                    
+
                                     return brandName;
                                 },
                                 highlighter: function(highlight) {
@@ -116,7 +124,8 @@ $(function() {
                             map: self.map,
                             title:venue.get('name')
                         });
-
+                        
+                        self.markers.push(marker);
 
                         self.attachInfoWindow(marker,venue);
 
