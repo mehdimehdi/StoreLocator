@@ -33,21 +33,9 @@ $(function() {
         el:$("#app-container"),
 
         events: {
-            'foundBrand' : 'foundBrand',
-            'focus #search-bar' : 'startSearch'
+            'foundBrand' : 'foundBrand'
         },
 
-
-        startSearch: function(ev) {
-
-            //clear the social icons
-            $("#icon a").fadeOut()
-
-            console.log('starting search');
-
-            return false;
-
-        },
 
         initialize: function() {
 
@@ -86,6 +74,10 @@ $(function() {
                                     $(self.el).trigger('foundBrand', brandName);
                                     
                                     return brandName;
+                                },
+                                highlighter: function(highlight) {
+                                    $("#icon a").fadeOut()
+                                    return highlight;
                                 }
             });
 
