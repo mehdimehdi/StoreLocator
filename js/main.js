@@ -122,11 +122,19 @@ $(function() {
                         //get the longitude and latitude
                         var myLatlng = new google.maps.LatLng(venue.get('location')['latitude'],venue.get('location')['longitude']);
 
+                        var pinShadow = {
+                            url: './img/pin_shadow.png',
+                            anchor: new google.maps.Point(0, 27)
+                        };
+
+
                         //add the marker to the map
                         var marker = new google.maps.Marker({
                             position: myLatlng,
                             map: self.map,
-                            title:venue.get('name')
+                            title:venue.get('name'),
+                            icon: './img/pin.png',
+                            shadow: pinShadow
                         });
                         
                         self.markers.push(marker);

@@ -1,3 +1,2 @@
-change the ui of the marker
 being able to save more than one many-to-many
 pan to the focus (re-scale)
