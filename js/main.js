@@ -166,10 +166,12 @@ $(function() {
 
             //open the info window, on click on the marker
             google.maps.event.addListener(marker, 'click', function() {
+
                 infoWindow.open(this.map,marker);
 
                 for (var i=0; i<self.openedInfoWindows.length;i++) {
                     self.openedInfoWindows[i].close();
+                    self.openedInfoWindows = [];
                 }
 
                 self.openedInfoWindows.push(infoWindow);
