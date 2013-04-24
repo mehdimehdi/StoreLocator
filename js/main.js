@@ -124,7 +124,7 @@ $(function() {
 
                         var pinShadow = {
                             url: './img/pin_shadow.png',
-                            anchor: new google.maps.Point(0, 27)
+                            anchor: new google.maps.Point(1, 26)
                         };
 
 
