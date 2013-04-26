@@ -242,16 +242,23 @@ $(function() {
 
         saveVenue: function(event) {
 
-            //get the id of the venue
-            var venue_id = $(event.target).find("input[name=venue-checkboxes]:checked").val();
+            var checked_boxes = $(event.target).find("input[name=venue-checkboxes]:checked")
 
-            //get the venue
-            var venue = this.venues.get(venue_id)
+            for (var i=0; i< checked_boxes.length ;i++) {
 
-            //Save brand into venue
-            var relation = venue.relation('brands');
-            relation.add(this.options.brand);
-            venue.save()
+                //get the id of the venue
+                var venue_id = checked_boxes[i].value;
+
+                //get the venue
+                var venue = this.venues.get(venue_id)
+
+                //Save brand into venue
+                var relation = venue.relation('brands');
+                relation.add(this.options.brand);
+                venue.save()
+
+            }
+
             alert('done!');
 
             return false;
