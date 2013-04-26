@@ -56,19 +56,19 @@
     </script>
 
     <script type="text/template"  id="brand-social-template">
-        <% if (typeof(website) != "undefined") { %>
+        <% if (typeof(website) == "string") { %>
             <a href="<%= website %>" rel="tooltip" title="Website"><img src="img/icon_link.gif" target="_blank"></a>
         <% } %>
-        <% if (typeof(facebook) != "undefined") { %>
+        <% if (typeof(facebook) == "string") { %>
             <a href="<%= facebook %>" rel="tooltip" title="Facebook"><img src="img/icon_fb.gif" target="_blank"></a>
         <% } %>
-        <% if (typeof(twitter) != "undefined") { %>
+        <% if (typeof(twitter) == "string") { %>
             <a href="<%= twitter %>" rel="tooltip" title="Twitter"><img src="img/icon_twitter.gif" target="_blank"></a>
         <% } %>
-        <% if (typeof(tumblr) != "undefined") { %>
+        <% if (typeof(tumblr) == "string") { %>
             <a href="<%= tumblr %>" rel="tooltip" title="Tumblr"><img src="img/icon_tumblr.gif" target="_blank"></a>
         <% } %>
-        <% if (typeof(instagram) != "undefined") { %>
+        <% if (typeof(instagram) == "string") { %>
             <a href="<%= instagram %>" rel="tooltip" title="Instagram"><img src="img/icon_inst.gif" target="_blank"></a>
         <% } %>
     </script>
@@ -106,19 +106,19 @@
         <div id="store-address"><%= address %></div>
         <div id="store-phone"><%= phone %></div>
         <div id="store-icons">
-            <% if (typeof(website) != "undefined") { %>
+            <% if (typeof(website) == "string") { %>
         	    <a href="<%= website %>" rel="tooltip" title="URL" target="_blank"><img src="img/icon_link.gif" width="30px" height="30px"></a>
             <% } %>
-            <% if (typeof(facebook) != "undefined") { %>
+            <% if (typeof(facebook) == "string") { %>
         	<a href="<%= facebook %>" rel="tooltip" title="Facebook" target="_blank"><img src="img/icon_fb.gif" width="30px" height="30px"></a>
             <% } %>
-            <% if (typeof(twitter) != "undefined") { %>
+            <% if (typeof(twitter) == "string") { %>
         	<a href="http://www.twitter.com/<%= twitter %>" rel="tooltip" title="Twitter" target="_blank"><img src="img/icon_twitter.gif" width="30px" height="30px"></a>
             <% } %>
-            <% if (typeof(tumblr) != "undefined") { %>
+            <% if (typeof(tumblr) == "string") { %>
         	<a href="<%= tumblr %>" rel="tooltip" title="Tumblr" target="_blank"><img src="img/icon_tumblr.gif" width="30px" height="30px"></a>
             <% } %>
-            <% if (typeof(instagram) != "undefined") { %>
+            <% if (typeof(instagram) == "string") { %>
         	    <a href="http://www.instagram.com/<%= instagram %>" rel="tooltip" title="Instagram" target="_blank"><img src="img/icon_inst.gif" width="30px" height="30px"></a> 		</div>
             <% } %>
     </script>
