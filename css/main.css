@@ -36,12 +36,12 @@ body {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: #b3d4fd;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: #b3d4fd;
     text-shadow: none;
 }
 
@@ -151,6 +151,8 @@ input[type="text"] {
 	padding: 0px 0px 11px 0px;
 	color: #b8b8b8;
 }
+
+
 
 .dropdown-menu > li > a {
 
