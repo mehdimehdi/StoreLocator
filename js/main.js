@@ -72,10 +72,9 @@ $(function() {
                 'placement': 'bottom'
             });
 
-
             //setting up the typeahead with the brand collection, and the callback for one selected
             $('.typeahead').typeahead({
-                                source: this.brands.pluck('name'),
+                                source: _.filter(this.brands.pluck('name'),function(name) {return typeof(name) === "string";}),
                                 updater: function(brandName) {
 
                                     //triggering the event when a brand has been chosen
