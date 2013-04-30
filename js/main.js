@@ -12,16 +12,20 @@ $(function() {
     var Venue = Parse.Object.extend("Venue");
     var Brand = Parse.Object.extend("Brand");
 
+    var brand_query = new Parse.Query(Brand).limit(1000);
+    var venue_query = new Parse.Query(Venue).limit(1000);
 
     // Collections
     //-----------------
 
     var BrandList = Parse.Collection.extend({
-        model:Brand
+        model:Brand,
+        query: brand_query
     });
 
     var VenueList = Parse.Collection.extend({
-        model:Venue
+        model:Venue,
+        query: venue_query
     });
 
 
@@ -290,7 +294,7 @@ $(function() {
             this.brands = new BrandList;
             
             //fetch the list
-            this.brands.fetch();
+            this.brands.fetch({data:{ startAt: 10, count: 10}});
 
             //bind the reset to show what's inside
             this.brands.on("reset",this.render,this);
@@ -299,6 +303,7 @@ $(function() {
 
         //render the list of brands
         render: function() {
+
 
             this.$el.html(this.template({brands:this.brands.models}));
             return this;
