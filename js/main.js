@@ -13,7 +13,7 @@ $(function() {
     var Brand = Parse.Object.extend("Brand");
 
     var brand_query = new Parse.Query(Brand).limit(1000);
-    var venue_query = new Parse.Query(Venue).limit(1000);
+    var venue_query = new Parse.Query(Venue).ascending("name").limit(1000);
 
     // Collections
     //-----------------
