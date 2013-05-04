@@ -231,15 +231,59 @@ $(function() {
             this.venues.fetch();
 
             //bind the reset to show what's inside
-            this.venues.on("reset",this.render,this);
+            this.venues.on("reset",this.retrieveBrands,this);
 
         },
 
-        //render the list of brands
+
+        
         render: function() {
 
             this.$el.html(this.template({venues:this.venues.models}));
             return this;
+
+        },
+        //render the list of brands
+        retrieveBrands: function() {
+
+            var count = this.venues.size();
+
+
+            //going through each instance of venue
+            _.each(this.venues.models, function(value,key,list) {
+
+                //querying to see if the brand exist
+                var query = value.relation('brands').query();
+
+                var self = this;//keeping a reference of the current object, so we can use it to render
+
+                query.get(this.options.brand.id,{
+
+                    success:function(result){//if it exists
+
+                        value.add('checked',true);//this one should be checked
+
+                        if(!--count) {//if we went through all the venues, then render
+
+                            self.render();
+                
+                        }
+                        
+                    },
+                    error:function(result){//in this case there is no match
+
+                        if(!--count) {//if we went through all the venues, then render
+    
+                            value.add('checked',false);//this venue should not be checked
+
+                            self.render();
+
+                        }
+                        
+                    }
+                });
+            }, this);
+
 
         },
 

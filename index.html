@@ -93,7 +93,13 @@
         <form id="save-venue">
             <% for (var i in venues) { %>
                 <div>
-                    <input name="venue-checkboxes" value="<%= venues[i].id %>" type="checkbox"><%= venues[i].get('name') %>
+                    <input name="venue-checkboxes" value="<%= venues[i].id %>" type="checkbox"
+                    <% if (venues[i].get('checked')) { %>
+                        checked="checked"
+                    <% } %>
+                        ><%= venues[i].get('name') %>
+
+                    
                 </div>
             <% } %>
             <button type="submit">save</button>
