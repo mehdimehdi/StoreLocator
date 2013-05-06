@@ -222,6 +222,8 @@ $(function() {
         //initialize the whole view
         initialize: function() {
 
+            _.bindAll(this);
+
             if (_.isEmpty(this.options)) {//if no options passed, then don't run all
 
                 return false;
@@ -301,7 +303,7 @@ $(function() {
 
         saveVenue: function(event) {
 
-            var boxes = $(event.target).find("input[name=venue-checkboxes]")
+            var boxes = $(event.target).find("input[name=venue-checkboxes]");
 
             for (var i=0; i< boxes.length ;i++) {
 
@@ -387,8 +389,12 @@ $(function() {
             return false;
         },
         resetVenue: function(event) {
+
+            //get the id of the brand selected
+            var brand_id = $(event.target).find(":selected").val();
+
             
-            new VenueView().$el.html('');;
+            new VenueView({brand:this.brands.get(brand_id)}).$el.html('');;
         }
 
     });
