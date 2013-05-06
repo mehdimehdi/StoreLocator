@@ -222,6 +222,11 @@ $(function() {
         //initialize the whole view
         initialize: function() {
 
+            if (_.isEmpty(this.options)) {//if no options passed, then don't run all
+
+                return false;
+            }
+
             var self = this;
 
             //create our collection of venues
@@ -245,6 +250,8 @@ $(function() {
         },
         //render the list of brands
         retrieveBrands: function() {
+
+            //alert('reset trigger');
 
             var count = this.venues.size();
 
@@ -341,7 +348,8 @@ $(function() {
         //the template for the brand
         template: _.template($('#brand-template').html()),
         events: {
-            "submit #pick-brand": "selectBrand"
+            "submit #pick-brand": "selectBrand",
+            "change #brand-dropdown": "resetVenue"
         },
 
         //initialize the whole view
@@ -377,6 +385,10 @@ $(function() {
             new VenueView({brand:this.brands.get(brand_id)});
 
             return false;
+        },
+        resetVenue: function(event) {
+            
+            new VenueView().$el.html('');;
         }
 
     });
