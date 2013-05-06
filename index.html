@@ -94,7 +94,7 @@
             <% for (var i in venues) { %>
                 <div>
                     <input name="venue-checkboxes" value="<%= venues[i].id %>" type="checkbox"
-                    <% if (venues[i].get('checked')) { %>
+                    <% if (carriesBrand[venues[i].id]) { %>
                         checked="checked"
                     <% } %>
                         ><%= venues[i].get('name') %>

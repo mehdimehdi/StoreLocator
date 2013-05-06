@@ -239,7 +239,7 @@ $(function() {
         
         render: function() {
 
-            this.$el.html(this.template({venues:this.venues.models}));
+            this.$el.html(this.template({venues:this.venues.models,carriesBrand:this.carriesBrand}));
             return this;
 
         },
@@ -247,6 +247,9 @@ $(function() {
         retrieveBrands: function() {
 
             var count = this.venues.size();
+
+
+            this.carriesBrand = {};//this is an object that tells if the venue holds that specific brand
 
 
             //going through each instance of venue
@@ -261,7 +264,7 @@ $(function() {
 
                     success:function(result){//if it exists
 
-                        value.add('checked',true);//this one should be checked
+                        self.carriesBrand[value.id] = true;
 
                         if(!--count) {//if we went through all the venues, then render
 
@@ -272,9 +275,10 @@ $(function() {
                     },
                     error:function(result){//in this case there is no match
 
+                        self.carriesBrand[value.id] = false;
+
                         if(!--count) {//if we went through all the venues, then render
     
-                            value.add('checked',false);//this venue should not be checked
 
                             self.render();
 
@@ -285,28 +289,40 @@ $(function() {
             }, this);
 
 
+
         },
 
         saveVenue: function(event) {
 
-            var checked_boxes = $(event.target).find("input[name=venue-checkboxes]:checked")
+            var boxes = $(event.target).find("input[name=venue-checkboxes]")
 
-            for (var i=0; i< checked_boxes.length ;i++) {
+            for (var i=0; i< boxes.length ;i++) {
 
                 //get the id of the venue
-                var venue_id = checked_boxes[i].value;
+                var venue_id = boxes[i].value;
 
                 //get the venue
                 var venue = this.venues.get(venue_id)
 
                 //Save brand into venue
                 var relation = venue.relation('brands');
-                relation.add(this.options.brand);
-                venue.save()
+
+                if(boxes[i].checked) {
+                    relation.add(this.options.brand);
+                } else {
+                    relation.remove(this.options.brand);
+                }
 
             }
 
-            alert('done!');
+            Parse.Object.saveAll(this.venues.models, function(list, error) {
+                if (list) {
+                    alert('done!');
+            
+                } else {
+                    alert('error!');
+                }
+            });
 
             return false;
         }
@@ -346,7 +362,6 @@ $(function() {
 
         //render the list of brands
         render: function() {
-
 
             this.$el.html(this.template({brands:this.brands.models}));
             return this;
