@@ -309,7 +309,7 @@ $(function() {
                 var venue_id = boxes[i].value;
 
                 //get the venue
-                var venue = this.venues.get(venue_id)
+                var venue = this.venues.get(venue_id);
 
                 //Save brand into venue
                 var relation = venue.relation('brands');
