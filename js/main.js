@@ -221,6 +221,7 @@ $(function() {
 
         //initialize the whole view
         initialize: function() {
+    
 
             _.bindAll(this);
 
@@ -305,6 +306,7 @@ $(function() {
 
             var boxes = $(event.target).find("input[name=venue-checkboxes]");
 
+
             for (var i=0; i< boxes.length ;i++) {
 
                 //get the id of the venue
@@ -327,7 +329,6 @@ $(function() {
             Parse.Object.saveAll(this.venues.models, function(list, error) {
                 if (list) {
                     alert('done!');
-            
                 } else {
                     alert('error!');
                 }
@@ -339,13 +340,13 @@ $(function() {
     });
 
 
-
-
     //the admin view
     var AdminView = Parse.View.extend({
 
         //the anchor
         el: ".content",
+        
+        venueView: null,
 
         //the template for the brand
         template: _.template($('#brand-template').html()),
@@ -373,28 +374,37 @@ $(function() {
         //render the list of brands
         render: function() {
 
-            this.$el.html(this.template({brands:this.brands.models}));
+            var template = this.template({brands:this.brands.models});
+            this.$el.html(template);
+
             return this;
 
         },
 
         selectBrand: function(event) {
 
+
             //get the id of the brand selected
             var brand_id = $(event.target).find(":selected").val();
 
-            //pass it to the view to save
-            new VenueView({brand:this.brands.get(brand_id)});
+            //if the venue view already existed, let's re-use it, and just update the brand
+            if(this.venueView) {
+                this.venueView.options.brand = this.brands.get(brand_id);
+                this.venueView.retrieveBrands();
+            } else {
+                //create a brand new view to save
+                this.venueView = new VenueView({brand:this.brands.get(brand_id)});
+            }
 
             return false;
         },
         resetVenue: function(event) {
 
-            //get the id of the brand selected
-            var brand_id = $(event.target).find(":selected").val();
+            if(this.venueView) {
+                //just cleaning things up
+                this.venueView.$el.html('');
+            }
 
-            
-            new VenueView({brand:this.brands.get(brand_id)}).$el.html('');;
         }
 
     });
